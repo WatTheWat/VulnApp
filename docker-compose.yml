@@ -2,10 +2,25 @@
 # DO NOT expose this to the internet. Lock the NSG to your own IP.
 
 services:
+  #Web appplication firewall - OWASP
+  waf:
+    image: owasp/modsecurity-crs:nginx-alpine
+    ports:
+      - "80:8080"            # listens on 8080 internally
+    environment:
+      BACKEND: http://web:80
+      MODSEC_RULE_ENGINE: DetectionOnly   # log, don't block (Act 1 must succeed)
+      BLOCKING_PARANOIA: 1
+      MODSEC_AUDIT_LOG: /var/log/modsec/audit.log
+      MODSEC_AUDIT_LOG_FORMAT: JSON
+    volumes:
+      - ./logs/modsec:/var/log/modsec
+    depends_on:
+      - web
+
+
   web:
     image: nginx:1.27-alpine
-    ports:
-      - "80:80"
     volumes:
       - ./app:/var/www/html:ro
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
