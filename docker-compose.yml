@@ -2,6 +2,20 @@
 # DO NOT expose this to the internet. Lock the NSG to your own IP.
 
 services:
+
+  suricata-responder:
+    build: ./suricata-responder
+    container_name: suricata-responder
+    restart: unless-stopped
+    env_file: ./suricata-responder/.env
+    volumes:
+      - ./suricata-responder/logs:/app/logs
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
   #Web appplication firewall - OWASP
   waf:
     image: owasp/modsecurity-crs:nginx-alpine

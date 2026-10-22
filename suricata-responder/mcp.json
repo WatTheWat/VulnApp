@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "suricata-nsg": {
+      "command": "/opt/venv/bin/python",
+      "args": ["/app/suricata_nsg_mcp.py"],
+      "env": {
+        "AZURE_SUBSCRIPTION_ID": "${AZURE_SUBSCRIPTION_ID}",
+        "NSG_RESOURCE_GROUP": "${NSG_RESOURCE_GROUP}",
+        "NSG_NAME": "${NSG_NAME}",
+        "LA_WORKSPACE_ID": "${LA_WORKSPACE_ID}",
+        "SURICATA_TABLE": "${SURICATA_TABLE:-Suricata_CL}",
+        "ALLOWLIST_CIDRS": "${ALLOWLIST_CIDRS:-}",
+        "MAX_BLOCKS_PER_RUN": "${MAX_BLOCKS_PER_RUN:-10}",
+        "BLOCK_LOG": "/app/logs/blocks.jsonl"
+      }
+    }
+  }
+}

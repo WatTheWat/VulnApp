@@ -27,3 +27,11 @@
 2026/10/19 21:12:15 [notice] 1#1: start worker processes
 2026/10/19 21:12:15 [notice] 1#1: start worker process 21
 2026/10/19 21:12:15 [notice] 1#1: start worker process 22
+2026/10/22 19:23:59 [notice] 1#1: using the "epoll" event method
+2026/10/22 19:23:59 [notice] 1#1: nginx/1.27.5
+2026/10/22 19:23:59 [notice] 1#1: built by gcc 14.2.0 (Alpine 14.2.0) 
+2026/10/22 19:23:59 [notice] 1#1: OS: Linux 7.0.0-1017-azure
+2026/10/22 19:23:59 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1024:524288
+2026/10/22 19:23:59 [notice] 1#1: start worker processes
+2026/10/22 19:23:59 [notice] 1#1: start worker process 22
+2026/10/22 19:23:59 [notice] 1#1: start worker process 23
