@@ -3,6 +3,17 @@
 
 services:
 
+  suricata:
+    image: jasonish/suricata:7.0
+    container_name: suricata
+    restart: unless-stopped
+    network_mode: host            # needed so it sees the VM's real interface traffic
+    cap_add: [NET_ADMIN, NET_RAW, SYS_NICE]
+    command: -i eth0              # change if step 1 showed a different interface name
+    volumes:
+      - /var/log/suricata:/var/log/suricata    # eve.json lands here on the host
+      - suricata-rules:/var/lib/suricata       # keeps downloaded rules across restarts
+
   suricata-responder:
     build: ./suricata-responder
     container_name: suricata-responder
@@ -76,3 +87,4 @@ services:
 
 volumes:
   db_data:
+  suricata-rules:
